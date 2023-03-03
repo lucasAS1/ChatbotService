@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ChatbotService.Infrastructure.Interfaces\ChatbotService.Infrastructure.Interfaces.csproj" />
+      <ProjectReference Include="..\ChatbotService.Models.Interfaces\ChatbotService.Models.Interfaces.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Flurl.Http" Version="4.0.0-pre3" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0-preview.1.23110.8" />
+      <PackageReference Include="Polly" Version="7.2.3" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ChatbotService.Infrastructure.Interfaces\ChatbotService.Infrastructure.Interfaces.csproj" />
+      <ProjectReference Include="..\ChatbotService.Models.Interfaces\ChatbotService.Models.Interfaces.csproj" />
+    </ItemGroup>
+
+</Project>
