@@ -11,4 +11,8 @@
       <ProjectReference Include="..\ChatbotService.Models.Interfaces\ChatbotService.Models.Interfaces.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="ChatbotProject.Common.Domain.Models" Version="0.2.3" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0-preview.1.23110.8" />
+    </ItemGroup>
 </Project>

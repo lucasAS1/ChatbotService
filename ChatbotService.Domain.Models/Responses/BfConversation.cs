@@ -2,7 +2,7 @@
 
 namespace ChatbotService.Domain.Models.Responses;
 
-public class Conversation
+public class BfConversation
 {
     [JsonProperty("id")]
     public string Id { get; set; } = null!;

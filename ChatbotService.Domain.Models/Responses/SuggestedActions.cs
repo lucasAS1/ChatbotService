@@ -4,6 +4,6 @@ namespace ChatbotService.Domain.Models.Responses;
 
 public class SuggestedActions
 {
-    [JsonPropertyName("actions")]
-    public List<Action> Actions { get; set; }
+    [JsonPropertyName("actions")] 
+    public List<Action> Actions { get; set; } = null!;
 }

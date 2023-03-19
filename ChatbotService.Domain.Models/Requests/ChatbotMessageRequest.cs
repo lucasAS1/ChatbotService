@@ -26,5 +26,17 @@ public class ChatbotMessageRequest
     [JsonPropertyName("conversation")]
     [System.Text.Json.Serialization.JsonIgnore(Condition = JsonIgnoreCondition.Always)]
     [Newtonsoft.Json.JsonIgnore]
-    public Conversation? Conversation { get; set; }
+    public BfConversation? Conversation { get; set; }
+    
+    [JsonProperty("channel", NullValueHandling = NullValueHandling.Ignore)]
+    [JsonPropertyName("channel")]
+    [System.Text.Json.Serialization.JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+    [Newtonsoft.Json.JsonIgnore]
+    public string? Channel { get; set; }
+
+    [JsonProperty("watermark", NullValueHandling = NullValueHandling.Ignore)]
+    [JsonPropertyName("watermark")]
+    [System.Text.Json.Serialization.JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+    [Newtonsoft.Json.JsonIgnore]
+    public string Watermark { get; set; } = "0";
 }

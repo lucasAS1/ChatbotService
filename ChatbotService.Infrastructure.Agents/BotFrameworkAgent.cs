@@ -1,9 +1,8 @@
-﻿using System.Net.Http.Headers;
-using System.Net.Http.Json;
-using ChatbotService.Domain.Models.Requests;
+﻿using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Domain.Models.Responses;
 using ChatbotService.Domain.Models.Settings;
 using ChatbotService.Infrastructure.Interfaces.Agents;
+using Flurl;
 using Flurl.Http;
 using Microsoft.Extensions.Options;
 using Polly;
@@ -25,10 +24,20 @@ public class BotFrameworkAgent : IBotFrameworkAgent
         {
             var newConversation = await GenerateConversationToken();
 
-            message.Conversation = new Conversation()
+            message.Conversation = new BfConversation()
             {
                 Id = newConversation.ConversationId,
                 Token = newConversation.Token
+            };
+        }
+        else
+        {
+            var refreshedConversation = await RefreshConversationToken(message);
+
+            message.Conversation = new BfConversation()
+            {
+                Id = refreshedConversation.ConversationId,
+                Token = refreshedConversation.Token
             };
         }
         
@@ -45,12 +54,13 @@ public class BotFrameworkAgent : IBotFrameworkAgent
             .ExecuteAsync(async () =>
             {
                 await
-                    $"https://directline.botframework.com/v3/directline/conversations/{message.Conversation.Id}/activities"
+                    $"https://directline.botframework.com/v3/directline/conversations/{message.Conversation!.Id}/activities"
                         .WithHeader("Authorization", $"Bearer {message.Conversation.Token}")
                         .PostJsonAsync(message);
             });
 
-        await Task.Delay(1000);
+        //todo: need to make a more intelligent way to garantee that the bot framework will have sent all messages
+        await Task.Delay(2000);
     }
 
     private async Task<List<Activity>> GetActivities(ChatbotMessageRequest message)
@@ -61,13 +71,16 @@ public class BotFrameworkAgent : IBotFrameworkAgent
             .ExecuteAsync(async () =>
             {
                 var activityListResponse = await
-                    $"https://directline.botframework.com/v3/directline/conversations/{message.Conversation.Id}/activities"
+                    $"https://directline.botframework.com/v3/directline/conversations/{message.Conversation!.Id}/activities"
+                        .SetQueryParam("watermark", message.Watermark)
                         .WithHeader("Authorization", $"Bearer {message.Conversation.Token}")
                         .GetJsonAsync<GetActivityResponse>();
 
                 return activityListResponse;
             });
-        
+        var watermark = int.Parse(response.Watermark) + response.Activities.Count - 1;
+        message.Watermark = watermark.ToString();
+
         return response.Activities;
     }
     
@@ -88,7 +101,7 @@ public class BotFrameworkAgent : IBotFrameworkAgent
         return response;
     }
 
-    private async Task<ConversationResponse> RefreshConversationToken()
+    private async Task<ConversationResponse> RefreshConversationToken(ChatbotMessageRequest message)
     {
         // Define the request URL
         var requestUrl = "https://directline.botframework.com/v3/directline/tokens/refresh";
@@ -99,7 +112,7 @@ public class BotFrameworkAgent : IBotFrameworkAgent
                 throw new Exception($"Failed to refresh Direct Line token: {ex.Message}"))
             .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)))
             .ExecuteAsync(async () => await requestUrl
-                .WithHeader("Authorization", $"Bearer {_token}")
+                .WithHeader("Authorization", $"Bearer {message.Conversation!.Token}")
                 .PostAsync()
                 .ReceiveJson<ConversationResponse>());
         
