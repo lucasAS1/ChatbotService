@@ -7,9 +7,9 @@ public class GetActivityResponse
 {
     [JsonProperty("activities")]
     [JsonPropertyName("activities")]
-    public List<Activity> Activities { get; set; }
-    
+    public List<Activity> Activities { get; set; } = null!;
+
     [JsonPropertyName("watermark")]
     [JsonProperty("watermark")]
-    public string Watermark { get; set; }
+    public string Watermark { get; set; } = null!;
 }

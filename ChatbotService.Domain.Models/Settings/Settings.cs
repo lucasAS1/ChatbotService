@@ -1,6 +1,8 @@
-﻿namespace ChatbotService.Domain.Models.Settings;
+﻿using ChatbotProject.Common.Domain.Models.Settings;
 
-public class Settings
+namespace ChatbotService.Domain.Models.Settings;
+
+public class Settings : ApiSettings
 {
     public BotFrameworkSettings BotFrameworkSettings { get; set; } = null!;
 }

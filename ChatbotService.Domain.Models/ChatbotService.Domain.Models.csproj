@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="ChatbotProject.Common.Domain.Models" Version="0.2.3" />
       <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.3-beta1" />
     </ItemGroup>
 
@@ -14,4 +15,7 @@
       <Folder Include="Mapper" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ChatbotService.Infrastructure.DTOS\ChatbotService.Infrastructure.DTOS.csproj" />
+    </ItemGroup>
 </Project>
