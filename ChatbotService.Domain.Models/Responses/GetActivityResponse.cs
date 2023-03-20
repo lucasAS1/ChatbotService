@@ -1,8 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace ChatbotService.Domain.Models.Responses;
 
+[ExcludeFromCodeCoverage]
 public class GetActivityResponse
 {
     [JsonProperty("activities")]

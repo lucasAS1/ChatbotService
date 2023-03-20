@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace ChatbotService.Domain.Models.Responses;
 
-public class Temperatures
+[ExcludeFromCodeCoverage]
+public class GetActivitiesResponse
 {
     [JsonProperty("activities")]
     public List<Activity> Activities { get; set; } = null!;

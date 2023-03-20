@@ -1,13 +1,10 @@
-﻿using ChatbotProject.Common.Infrastructure.Mongo;
-using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
+﻿using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
 using ChatbotService.Domain.Models.Broker;
 using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Domain.Models.Responses;
-using ChatbotService.Domain.Models.Settings;
 using ChatbotService.Infrastructure.DTOS.Conversation;
 using ChatbotService.Infrastructure.Interfaces.Agents;
 using ChatbotService.Models.Interfaces.Services;
-using Microsoft.Extensions.Options;
 
 namespace ChatbotService.Domain.Services.Chatbot;
 
@@ -19,12 +16,12 @@ public class ChatbotMessagingService : IChatbotMessagingService
 
     public ChatbotMessagingService(
         IBotFrameworkAgent agent,
-        IOptions<Settings> config)
+        IRepository<Conversation> conversationRepository,
+        IRepository<Message> messageRepository)
     {
         _agent = agent;
-
-        _conversationRepository = new Repository<Conversation>(config);
-        _messageRepository = new Repository<Message>(config);
+        _conversationRepository = conversationRepository;
+        _messageRepository = messageRepository;
     }
 
     public async Task<List<BrokerMessage>> SendMessageAsync(ChatbotMessageRequest message)

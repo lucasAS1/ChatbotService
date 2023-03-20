@@ -1,7 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace ChatbotService.Domain.Models.Responses;
 
+[ExcludeFromCodeCoverage]
 public class SuggestedActions
 {
     [JsonPropertyName("actions")] 

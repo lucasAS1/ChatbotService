@@ -1,7 +1,9 @@
-﻿using ChatbotProject.Common.Infrastructure.Mongo;
+﻿using System.Diagnostics.CodeAnalysis;
+using ChatbotProject.Common.Infrastructure.Mongo;
 
 namespace ChatbotService.Infrastructure.DTOS.Conversation;
 
+[ExcludeFromCodeCoverage]
 public class Message : BaseEntity
 {
     public string ConversationId { get; set; } = null!;
