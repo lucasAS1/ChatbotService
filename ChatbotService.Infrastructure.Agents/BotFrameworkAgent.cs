@@ -1,4 +1,5 @@
-﻿using ChatbotService.Domain.Models.Requests;
+﻿using System.Diagnostics.CodeAnalysis;
+using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Domain.Models.Responses;
 using ChatbotService.Domain.Models.Settings;
 using ChatbotService.Infrastructure.Interfaces.Agents;
@@ -9,6 +10,7 @@ using Polly;
 
 namespace ChatbotService.Infrastructure.Agents;
 
+[ExcludeFromCodeCoverage]
 public class BotFrameworkAgent : IBotFrameworkAgent
 {
     private readonly string _token;

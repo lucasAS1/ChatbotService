@@ -15,6 +15,13 @@ namespace ChatbotService.Application.WebApi.Controllers
             _chatbotMessagingService = chatbotMessagingService;
         }
         
+        /// <summary>
+        /// Send a message and receive the responses from the chatbot.
+        /// This is a temporary endpoint and will be removed from the
+        /// official chatbot api when it's first working release gets launched.
+        ///</summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> SendMessage(ChatbotMessageRequest message)
         {

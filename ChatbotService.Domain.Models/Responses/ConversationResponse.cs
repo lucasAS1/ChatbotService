@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace ChatbotService.Domain.Models.Responses;
 
+[ExcludeFromCodeCoverage]
 public class ConversationResponse
 {
     [JsonProperty("conversationId")]

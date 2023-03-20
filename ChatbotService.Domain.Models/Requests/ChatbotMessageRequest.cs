@@ -1,9 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using ChatbotService.Domain.Models.Responses;
 using Newtonsoft.Json;
 
 namespace ChatbotService.Domain.Models.Requests;
 
+[ExcludeFromCodeCoverage]
 public class ChatbotMessageRequest
 {
     [JsonProperty("locale")]

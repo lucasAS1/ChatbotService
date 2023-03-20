@@ -2,6 +2,10 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CProjetos_0020C_0023_0020dotNet_005CChatbotProject_002ECommon_005CChatbotProject_002ECommon_002EInfrastructure_002EMongo_005Cbin_005CDebug_005CChatbotProject_002ECommon_002EInfrastructure_002EMongo_002E1_002E0_002E0_002Enupkg/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CProjetos_0020C_0023_0020dotNet_005CChatbotProject_002ECommon_005CChatbotProject_002ECommon_002EInfrastructure_002EMongo_005Cbin_005CDebug_005Cnet6_002E0_005CChatbotProject_002ECommon_002EInfrastructure_002EMongo_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\lucas\AppData\Local\JetBrains\Rider2022.3\resharper-host\temp\Rider\vAny\CoverageData\_ChatbotService.1625780894.01\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=14fab56d_002D9cd5_002D47b1_002D8f0b_002D6300eeb1fb63/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	
 	
 	

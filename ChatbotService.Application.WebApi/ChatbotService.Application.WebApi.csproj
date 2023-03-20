@@ -24,7 +24,7 @@
       <ProjectReference Include="..\ChatbotService.Domain.Services\ChatbotService.Domain.Services.csproj" />
       <ProjectReference Include="..\ChatbotService.Infrastructure.Agents\ChatbotService.Infrastructure.Agents.csproj" />
       <ProjectReference Include="..\ChatbotService.Infrastructure.Interfaces\ChatbotService.Infrastructure.Interfaces.csproj" />
-      <ProjectReference Include="..\ChatbotService.Models.Interfaces\ChatbotService.Models.Interfaces.csproj" />
+      <ProjectReference Include="..\ChatbotService.Domain.Interfaces\ChatbotService.Domain.Interfaces.csproj" />
     </ItemGroup>
 
 </Project>
