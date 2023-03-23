@@ -26,6 +26,7 @@ public class ChatbotMessagingFacade : IChatbotMessagingFacade
         
         foreach (var message in messages)
         {
+            //todo: queues should come from the appsettings file
             _producingService.Send(message,"service-telegram","service-to-telegram");
         }
     }
