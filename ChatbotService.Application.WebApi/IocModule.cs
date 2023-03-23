@@ -2,11 +2,13 @@
 using Autofac;
 using ChatbotProject.Common.Infrastructure.Mongo;
 using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
+using ChatbotService.Domain.Facades;
 using ChatbotService.Domain.Models.Settings;
 using ChatbotService.Domain.Services.Chatbot;
 using ChatbotService.Infrastructure.Agents;
 using ChatbotService.Infrastructure.DTOS.Conversation;
 using ChatbotService.Infrastructure.Interfaces.Agents;
+using ChatbotService.Models.Interfaces.Facades;
 using ChatbotService.Models.Interfaces.Services;
 using Microsoft.Extensions.Options;
 
@@ -29,6 +31,13 @@ public class IocContainer : Module
     private static void ConfigureDomainLayer(ContainerBuilder builder)
     {
         builder.RegisterType<ChatbotMessagingService>().As<IChatbotMessagingService>();
+        builder.RegisterType<ChatbotMessagingFacade>().As<IChatbotMessagingFacade>();
+        
+        ConfigureDbRepositories(builder);
+    }
+
+    private static void ConfigureDbRepositories(ContainerBuilder builder)
+    {
         builder.Register<Repository<Conversation>>(c =>
             {
                 var config = c.Resolve<IOptions<Settings>>();
