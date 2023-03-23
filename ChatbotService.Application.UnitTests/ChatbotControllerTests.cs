@@ -2,8 +2,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
+using ChatbotProject.Common.Domain.Models.Requests;
 using ChatbotService.Application.WebApi.Controllers;
-using ChatbotService.Domain.Models.Broker;
 using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Models.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +31,7 @@ public class ChatbotControllerTests
         var uat = new ChatbotController(_mockService.Object);
         var messageMock = _fixture.Create<ChatbotMessageRequest>();
         _mockService.Setup(x => x.SendMessageAsync(It.IsAny<ChatbotMessageRequest>()))
-            .ReturnsAsync(_fixture.CreateMany<BrokerMessage>().ToList());
+            .ReturnsAsync(_fixture.CreateMany<MessageRequest>().ToList());
         
         var result = await uat.SendMessage(messageMock);
         

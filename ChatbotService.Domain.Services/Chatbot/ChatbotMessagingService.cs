@@ -1,5 +1,5 @@
-﻿using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
-using ChatbotService.Domain.Models.Broker;
+﻿using ChatbotProject.Common.Domain.Models.Requests;
+using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
 using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Domain.Models.Responses;
 using ChatbotService.Infrastructure.DTOS.Conversation;
@@ -24,12 +24,12 @@ public class ChatbotMessagingService : IChatbotMessagingService
         _messageRepository = messageRepository;
     }
 
-    public async Task<List<BrokerMessage>> SendMessageAsync(ChatbotMessageRequest message)
+    public async Task<List<MessageRequest>> SendMessageAsync(ChatbotMessageRequest message)
     {
         await StartConversationIfNotStarted(message);
 
         var activities = await _agent.SendMessageAsync(message);
-        var brokerMessages = new List<BrokerMessage>();
+        var brokerMessages = new List<MessageRequest>();
 
         await SaveMessageDocument(message, activities);
         await UpsertConversationDocument(message);
@@ -82,24 +82,24 @@ public class ChatbotMessagingService : IChatbotMessagingService
         await _messageRepository.AddOrUpdateDocument(messageDocument);
     }
 
-    private void CreateBrokerMessageList(List<Activity> activities, List<BrokerMessage> brokerMessages, ChatbotMessageRequest message)
+    private void CreateBrokerMessageList(List<Activity> activities, List<MessageRequest> messageRequests, ChatbotMessageRequest message)
     {
         for (var i = 0; i < activities.Count; i++)
         {
             var activity = activities[i];
             if (activity.From.Name == "ChatbotPessoal")
             {
-                var brokerMessage = new BrokerMessage() { Text = activity.Text, ChatId = message.From.Id };
-                if(activity.SuggestedActions != null) AddInteractiveMessage(brokerMessage, activity);
+                var messageRequest = new MessageRequest() { Text = activity.Text, ChatId = message.From.Id };
+                if(activity.SuggestedActions != null) AddInteractiveMessage(messageRequest, activity);
 
-                brokerMessages.Add(brokerMessage);
+                messageRequests.Add(messageRequest);
             }
         }
     }
 
-    private void AddInteractiveMessage(BrokerMessage brokerMessage, Activity activity)
+    private void AddInteractiveMessage(MessageRequest messageRequest, Activity activity)
     {
-        brokerMessage.InteractiveMessage = new InteractiveMessage
+        messageRequest.InteractiveMessage = new InteractiveMessage
         {
             Type = activity.SuggestedActions.Actions.Count > 2 ? InteractiveMessageType.Menu : InteractiveMessageType.Button,
             Options = new List<string>()
@@ -107,7 +107,7 @@ public class ChatbotMessagingService : IChatbotMessagingService
 
         foreach (var option in activity.SuggestedActions.Actions)
         {
-            brokerMessage.InteractiveMessage.Options.Add(option.Value);
+            messageRequest.InteractiveMessage.Options.Add(option.Value);
         }
     }
 }

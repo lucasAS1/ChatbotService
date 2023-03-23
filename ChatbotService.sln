@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatbotService.Application.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatbotService.Domain.UnitTests", "ChatbotService.Domain.UnitTests\ChatbotService.Domain.UnitTests.csproj", "{327BDBD9-E004-470F-BB3C-C224B944699F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatbotService.Domain.Facades", "ChatbotService.Domain.Facades\ChatbotService.Domain.Facades.csproj", "{A04FB180-B3E7-47D6-BC6F-485F4BC6D62D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,7 @@ Global
 		{297F6381-86F7-4A27-BD7E-CBEA55E6F854} = {859B27D4-3B75-4D43-9BC2-BA1CDB31EACF}
 		{3E73BF4C-AF57-4543-B0FB-EDDF3ACDE3D9} = {26A69F3A-B4D3-446E-8039-6C6C0B3D0657}
 		{327BDBD9-E004-470F-BB3C-C224B944699F} = {53884ED3-0DBE-44D8-828F-487EB0B65A32}
+		{A04FB180-B3E7-47D6-BC6F-485F4BC6D62D} = {53884ED3-0DBE-44D8-828F-487EB0B65A32}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7F92D6BB-BC63-4381-966E-ED673A5FD25F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -81,5 +84,9 @@ Global
 		{327BDBD9-E004-470F-BB3C-C224B944699F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{327BDBD9-E004-470F-BB3C-C224B944699F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{327BDBD9-E004-470F-BB3C-C224B944699F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A04FB180-B3E7-47D6-BC6F-485F4BC6D62D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A04FB180-B3E7-47D6-BC6F-485F4BC6D62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A04FB180-B3E7-47D6-BC6F-485F4BC6D62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A04FB180-B3E7-47D6-BC6F-485F4BC6D62D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

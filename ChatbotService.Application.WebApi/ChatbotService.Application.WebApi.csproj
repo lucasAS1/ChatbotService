@@ -9,9 +9,10 @@
 
     <ItemGroup>
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-        <PackageReference Include="ChatbotProject.Common.Domain.Models" Version="0.2.3" />
+        <PackageReference Include="ChatbotProject.Common.Domain.Models" Version="0.3.1" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.14" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+        <PackageReference Include="RabbitMQ.Client.Core.DependencyInjection" Version="5.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
@@ -20,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ChatbotService.Domain.Facades\ChatbotService.Domain.Facades.csproj" />
       <ProjectReference Include="..\ChatbotService.Domain.Models\ChatbotService.Domain.Models.csproj" />
       <ProjectReference Include="..\ChatbotService.Domain.Services\ChatbotService.Domain.Services.csproj" />
       <ProjectReference Include="..\ChatbotService.Infrastructure.Agents\ChatbotService.Infrastructure.Agents.csproj" />

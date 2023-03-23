@@ -10,11 +10,11 @@ public class ChatbotMessageRequest
 {
     [JsonProperty("locale")]
     [JsonPropertyName("locale")]
-    public string Locale { get; set; } = null!;
+    public string Locale { get; set; } = "pt-BR";
 
     [JsonProperty("type")]
     [JsonPropertyName("type")]
-    public string Type { get; set; } = null!;
+    public string Type { get; set; } = "message";
 
     [JsonProperty("from")]
     [JsonPropertyName("from")]
