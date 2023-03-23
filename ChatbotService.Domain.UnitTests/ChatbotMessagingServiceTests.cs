@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
+using ChatbotProject.Common.Domain.Models.Requests;
 using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
-using ChatbotService.Domain.Models.Broker;
 using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Domain.Models.Responses;
 using ChatbotService.Domain.Services.Chatbot;
@@ -59,7 +59,7 @@ public class ChatbotMessagingServiceTests
         var uat = new ChatbotMessagingService(_agentMock.Object, _conversationRepositoryMock, _messageRepositoryMock);
         var result = await uat.SendMessageAsync(chatbotMessageRequest);
 
-        Assert.IsType<List<BrokerMessage>>(result);
+        Assert.IsType<List<MessageRequest>>(result);
     }
     
     [Fact]
@@ -74,6 +74,6 @@ public class ChatbotMessagingServiceTests
         var uat = new ChatbotMessagingService(_agentMock.Object, _conversationRepositoryMock, _messageRepositoryMock);
         var result = await uat.SendMessageAsync(chatbotMessageRequest);
 
-        Assert.IsType<List<BrokerMessage>>(result);
+        Assert.IsType<List<MessageRequest>>(result);
     }
 }

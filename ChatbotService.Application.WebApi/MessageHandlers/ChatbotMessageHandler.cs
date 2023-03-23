@@ -1,5 +1,4 @@
 ﻿using ChatbotProject.Common.Domain.Models.Requests;
-using ChatbotService.Domain.Models.Broker;
 using ChatbotService.Models.Interfaces.Facades;
 using RabbitMQ.Client.Core.DependencyInjection.MessageHandlers;
 using RabbitMQ.Client.Core.DependencyInjection.Models;
@@ -21,12 +20,7 @@ public class ChatbotMessageHandler : IAsyncMessageHandler
     {
         var message = UTF8.GetString(context.Message.Body.ToArray());
         var messageRequest = DeserializeObject<MessageRequest>(message);
-        var brokerMessage = new BrokerMessage()
-        {
-            Text = messageRequest!.Text,
-            ChatId = messageRequest.ChatId
-        };
-        
-        await _chatbotMessagingFacade.SendMessageAsync(brokerMessage);
+
+        await _chatbotMessagingFacade.SendMessageAsync(messageRequest);
     }
 }

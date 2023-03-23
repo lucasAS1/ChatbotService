@@ -1,8 +1,8 @@
-﻿using ChatbotService.Domain.Models.Broker;
+﻿using ChatbotProject.Common.Domain.Models.Requests;
 
 namespace ChatbotService.Models.Interfaces.Facades;
 
 public interface IChatbotMessagingFacade
 {
-    public Task SendMessageAsync(BrokerMessage brokerMessage);
+    public Task SendMessageAsync(MessageRequest messageRequest);
 }

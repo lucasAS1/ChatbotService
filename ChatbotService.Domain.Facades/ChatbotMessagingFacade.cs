@@ -1,5 +1,4 @@
 ﻿using ChatbotProject.Common.Domain.Models.Requests;
-using ChatbotService.Domain.Models.Broker;
 using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Models.Interfaces.Facades;
 using ChatbotService.Models.Interfaces.Services;
@@ -18,10 +17,10 @@ public class ChatbotMessagingFacade : IChatbotMessagingFacade
         _producingService = producingService;
     }
 
-    public async Task SendMessageAsync(BrokerMessage brokerMessage)
+    public async Task SendMessageAsync(MessageRequest messageRequest)
     {
         var chatbotMessageRequest = new ChatbotMessageRequest()
-            { From = new From() { Id = brokerMessage!.ChatId }, Text = brokerMessage.Text };
+            { From = new From() { Id = messageRequest!.ChatId }, Text = messageRequest.Text };
 
         var messages = await _chatbotMessageService.SendMessageAsync(chatbotMessageRequest);
         
