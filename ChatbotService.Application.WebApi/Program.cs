@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using ChatbotService.Application.WebApi;
 using ChatbotService.Application.WebApi.MessageHandlers;
 using ChatbotService.Domain.Models.Settings;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
 using RabbitMQ.Client.Core.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,11 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Services.AddSwaggerGen();
 builder.Configuration
     .AddJsonFile("appsettings.json")
-    .AddJsonFile("appsettings.Development.json")
+    .AddAzureKeyVault(
+        builder.Configuration["KeyVaultClientDNS"],
+        builder.Configuration["KeyVaultClientId"],
+        builder.Configuration["KeyVaultClientSecret"],
+        new DefaultKeyVaultSecretManager())
     .AddEnvironmentVariables();
 builder.Services.Configure<Settings>(builder.Configuration.GetSection("Settings"));
 builder.Services
