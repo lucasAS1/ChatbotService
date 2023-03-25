@@ -21,8 +21,7 @@ builder.Configuration
         builder.Configuration["KeyVaultClientDNS"],
         builder.Configuration["KeyVaultClientId"],
         builder.Configuration["KeyVaultClientSecret"],
-        new DefaultKeyVaultSecretManager())
-    .AddEnvironmentVariables();
+        new DefaultKeyVaultSecretManager());
 builder.Services.Configure<Settings>(builder.Configuration.GetSection("Settings"));
 builder.Services
     .AddRabbitMqServices(builder.Configuration.GetSection("Settings:RabbitMqSettings:RabbitMqConnection"))
