@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ChatbotProject.Common.Domain.Models.Settings;
 using ChatbotService.Application.WebApi;
 using ChatbotService.Application.WebApi.MessageHandlers;
 using ChatbotService.Domain.Models.Settings;
@@ -23,6 +24,8 @@ builder.Configuration
         builder.Configuration["KeyVaultClientSecret"],
         new DefaultKeyVaultSecretManager());
 builder.Services.Configure<Settings>(builder.Configuration.GetSection("Settings"));
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("Settings"));
+
 builder.Services
     .AddRabbitMqServices(builder.Configuration.GetSection("Settings:RabbitMqSettings:RabbitMqConnection"))
     .AddConsumptionExchange("telegram-service", builder.Configuration.GetSection("Settings:RabbitMqSettings:ExchangeService"))
