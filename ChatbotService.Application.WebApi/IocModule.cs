@@ -3,14 +3,12 @@ using Autofac;
 using ChatbotProject.Common.Infrastructure.Mongo;
 using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
 using ChatbotService.Domain.Facades;
-using ChatbotService.Domain.Models.Settings;
 using ChatbotService.Domain.Services.Chatbot;
 using ChatbotService.Infrastructure.Agents;
 using ChatbotService.Infrastructure.DTOS.Conversation;
 using ChatbotService.Infrastructure.Interfaces.Agents;
 using ChatbotService.Models.Interfaces.Facades;
 using ChatbotService.Models.Interfaces.Services;
-using Microsoft.Extensions.Options;
 
 namespace ChatbotService.Application.WebApi;
 

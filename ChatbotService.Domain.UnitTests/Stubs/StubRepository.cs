@@ -14,14 +14,16 @@ namespace ChatbotService.Domain.UnitTests.stubs;
 public class StubRepository<TDocument> : IRepository<TDocument> where TDocument : BaseEntity
 {
     private readonly IFixture _fixture;
-    
-    public StubRepository(IFixture fixture)
+    private Task<TDocument>? _response;
+    public StubRepository(IFixture fixture, TDocument? response)
     {
         _fixture = fixture;
+        _response = Task.FromResult(response);
     }
 
     public async Task AddOrUpdateDocument(TDocument document)
     {
+        _response = Task.FromResult(document);
        await Task.CompletedTask;
     }
 
@@ -32,7 +34,7 @@ public class StubRepository<TDocument> : IRepository<TDocument> where TDocument 
 
     public Task<TDocument> GetDocument(Expression<Func<TDocument, bool>> filter)
     {
-        return Task.FromResult(_fixture.Create<TDocument>());
+        return _response;
     }
 
     public Task<List<TDocument>> GetDocuments(Expression<Func<TDocument, bool>> filter)

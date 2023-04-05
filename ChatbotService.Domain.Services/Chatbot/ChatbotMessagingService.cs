@@ -1,4 +1,5 @@
-﻿using ChatbotProject.Common.Domain.Models.Requests;
+﻿using System.IdentityModel.Tokens.Jwt;
+using ChatbotProject.Common.Domain.Models.Requests;
 using ChatbotProject.Common.Infrastructure.Mongo.Interfaces;
 using ChatbotService.Domain.Models.Requests;
 using ChatbotService.Domain.Models.Responses;
@@ -30,9 +31,9 @@ public class ChatbotMessagingService : IChatbotMessagingService
 
         var activities = await _agent.SendMessageAsync(message);
         var brokerMessages = new List<MessageRequest>();
-
-        await SaveMessageDocument(message, activities);
+        
         await UpsertConversationDocument(message);
+        await SaveMessageDocument(message, activities);
 
         CreateBrokerMessageList(activities, brokerMessages, message);
 
@@ -45,6 +46,14 @@ public class ChatbotMessagingService : IChatbotMessagingService
 
         if (conversation is not null)
         {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.ReadToken(conversation.Token) as JwtSecurityToken;
+            
+            if (token!.ValidTo < DateTime.Now)
+            {
+                return;
+            }
+            
             message.Watermark = conversation.NumberOfMessages;
             message.Conversation = new BfConversation()
             {
