@@ -14,5 +14,6 @@
     <ItemGroup>
       <PackageReference Include="ChatbotProject.Common.Domain.Models" Version="0.4.1" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0-preview.1.23110.8" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.28.1" />
     </ItemGroup>
 </Project>
